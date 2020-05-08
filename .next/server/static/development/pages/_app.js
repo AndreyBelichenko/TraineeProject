@@ -117,6 +117,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var semantic_ui_css_semantic_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-css/semantic.min.css */ "./node_modules/semantic-ui-css/semantic.min.css");
 /* harmony import */ var semantic_ui_css_semantic_min_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_css_semantic_min_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _redux_configureStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../redux/configureStore */ "./redux/configureStore.ts");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "react-redux");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_3__);
 var _jsxFileName = "/home/andrey/programming/projects/templateNext/pages/_app.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0__["createElement"];
 
@@ -125,21 +128,244 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 
 
+
+const store = Object(_redux_configureStore__WEBPACK_IMPORTED_MODULE_2__["default"])();
+
 function MyApp({
   Component,
   pageProps
 }) {
-  return __jsx(Component, _extends({}, pageProps, {
+  return __jsx(react_redux__WEBPACK_IMPORTED_MODULE_3__["Provider"], {
+    store: store,
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 5,
+      lineNumber: 9,
       columnNumber: 12
     }
-  }));
+  }, __jsx(Component, _extends({}, pageProps, {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 9,
+      columnNumber: 36
+    }
+  })));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (MyApp);
+
+/***/ }),
+
+/***/ "./redux/actionCreators/userDataActionCreators.ts":
+/*!********************************************************!*\
+  !*** ./redux/actionCreators/userDataActionCreators.ts ***!
+  \********************************************************/
+/*! exports provided: setUserData, setUserDataIntoStore */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setUserData", function() { return setUserData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setUserDataIntoStore", function() { return setUserDataIntoStore; });
+/* harmony import */ var _actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actionTypes/userDataActionType */ "./redux/actionTypes/userDataActionType.ts");
+
+function setUserData(payload) {
+  return {
+    type: _actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_0__["SET_USER_DATA_AUTH"],
+    payload: payload
+  };
+}
+function setUserDataIntoStore(payload) {
+  return {
+    type: _actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_0__["SET_USER_DATA_AUTH_STORE"],
+    payload: payload
+  };
+}
+
+/***/ }),
+
+/***/ "./redux/actionTypes/userDataActionType.ts":
+/*!*************************************************!*\
+  !*** ./redux/actionTypes/userDataActionType.ts ***!
+  \*************************************************/
+/*! exports provided: SET_LYRICS, SET_USER_DATA_AUTH, SET_USER_DATA_AUTH_STORE */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_LYRICS", function() { return SET_LYRICS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_USER_DATA_AUTH", function() { return SET_USER_DATA_AUTH; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_USER_DATA_AUTH_STORE", function() { return SET_USER_DATA_AUTH_STORE; });
+const SET_LYRICS = "lyricsActionTypes/SET_LYRICS";
+const SET_USER_DATA_AUTH = "SET_USER_DATA_AUTH";
+const SET_USER_DATA_AUTH_STORE = "SET_USER_DATA_AUTH_STORE";
+
+/***/ }),
+
+/***/ "./redux/configureStore.ts":
+/*!*********************************!*\
+  !*** ./redux/configureStore.ts ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "redux");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var redux_saga__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-saga */ "redux-saga");
+/* harmony import */ var redux_saga__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(redux_saga__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-devtools-extension */ "redux-devtools-extension");
+/* harmony import */ var redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _redux_reducers_rootReducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../redux/reducers/rootReducer */ "./redux/reducers/rootReducer.ts");
+/* harmony import */ var _saga_rootSaga__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./saga/rootSaga */ "./redux/saga/rootSaga.ts");
+
+
+
+
+
+const sagaMiddleware = redux_saga__WEBPACK_IMPORTED_MODULE_1___default()();
+
+const configureStore = () => {
+  const store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_redux_reducers_rootReducer__WEBPACK_IMPORTED_MODULE_3__["default"], Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2__["composeWithDevTools"])(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(sagaMiddleware)));
+  sagaMiddleware.run(_saga_rootSaga__WEBPACK_IMPORTED_MODULE_4__["default"]);
+  return store;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (configureStore);
+
+/***/ }),
+
+/***/ "./redux/reducers/rootReducer.ts":
+/*!***************************************!*\
+  !*** ./redux/reducers/rootReducer.ts ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "redux");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _userData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./userData */ "./redux/reducers/userData.ts");
+
+
+const rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
+  userData: _userData__WEBPACK_IMPORTED_MODULE_1__["default"]
+});
+/* harmony default export */ __webpack_exports__["default"] = (rootReducer);
+
+/***/ }),
+
+/***/ "./redux/reducers/userData.ts":
+/*!************************************!*\
+  !*** ./redux/reducers/userData.ts ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return userDataReducer; });
+/* harmony import */ var _actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actionTypes/userDataActionType */ "./redux/actionTypes/userDataActionType.ts");
+// import * as actions from "../actionTypes/lyricsActionTypes";
+
+const initialState = {
+  userData: {
+    name: '',
+    avatar: ''
+  }
+};
+function userDataReducer(state = initialState, action) {
+  switch (action.type) {
+    case 'Hello':
+      return {
+        userData: {
+          name: 'Andrey'
+        }
+      };
+
+    case _actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_0__["SET_USER_DATA_AUTH_STORE"]:
+      return {
+        userData: action.payload.payload
+      };
+
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./redux/saga/dataUser/watchDataUser.ts":
+/*!**********************************************!*\
+  !*** ./redux/saga/dataUser/watchDataUser.ts ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return watchDataUser; });
+/* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-saga/effects */ "redux-saga/effects");
+/* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _workerDataUser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./workerDataUser */ "./redux/saga/dataUser/workerDataUser.ts");
+/* harmony import */ var _actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actionTypes/userDataActionType */ "./redux/actionTypes/userDataActionType.ts");
+
+
+
+function* watchDataUser() {
+  yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["takeEvery"])('HELLO', _workerDataUser__WEBPACK_IMPORTED_MODULE_1__["sayHello"]);
+  yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["takeEvery"])(_actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_2__["SET_USER_DATA_AUTH"], _workerDataUser__WEBPACK_IMPORTED_MODULE_1__["setUserAuthData"]);
+}
+
+/***/ }),
+
+/***/ "./redux/saga/dataUser/workerDataUser.ts":
+/*!***********************************************!*\
+  !*** ./redux/saga/dataUser/workerDataUser.ts ***!
+  \***********************************************/
+/*! exports provided: sayHello, setUserAuthData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sayHello", function() { return sayHello; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setUserAuthData", function() { return setUserAuthData; });
+/* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-saga/effects */ "redux-saga/effects");
+/* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _actionCreators_userDataActionCreators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actionCreators/userDataActionCreators */ "./redux/actionCreators/userDataActionCreators.ts");
+
+
+function* sayHello() {
+  yield console.log('HELLO');
+}
+function* setUserAuthData(payload) {
+  yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["put"])(_actionCreators_userDataActionCreators__WEBPACK_IMPORTED_MODULE_1__["setUserDataIntoStore"](payload));
+}
+
+/***/ }),
+
+/***/ "./redux/saga/rootSaga.ts":
+/*!********************************!*\
+  !*** ./redux/saga/rootSaga.ts ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return rootSaga; });
+/* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-saga/effects */ "redux-saga/effects");
+/* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _dataUser_watchDataUser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dataUser/watchDataUser */ "./redux/saga/dataUser/watchDataUser.ts");
+
+
+const sagas = [_dataUser_watchDataUser__WEBPACK_IMPORTED_MODULE_1__["default"]];
+function* rootSaga() {
+  yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["all"])(sagas.map(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["fork"]));
+}
 
 /***/ }),
 
@@ -163,6 +389,61 @@ module.exports = __webpack_require__(/*! private-next-pages/_app.js */"./pages/_
 /***/ (function(module, exports) {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ "react-redux":
+/*!******************************!*\
+  !*** external "react-redux" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-redux");
+
+/***/ }),
+
+/***/ "redux":
+/*!************************!*\
+  !*** external "redux" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("redux");
+
+/***/ }),
+
+/***/ "redux-devtools-extension":
+/*!*******************************************!*\
+  !*** external "redux-devtools-extension" ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("redux-devtools-extension");
+
+/***/ }),
+
+/***/ "redux-saga":
+/*!*****************************!*\
+  !*** external "redux-saga" ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("redux-saga");
+
+/***/ }),
+
+/***/ "redux-saga/effects":
+/*!*************************************!*\
+  !*** external "redux-saga/effects" ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("redux-saga/effects");
 
 /***/ })
 

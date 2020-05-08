@@ -1,8 +1,8 @@
-import { combineReducers } from "redux";
-import userDataReducer from "./userData";
+import { combineReducers } from 'redux';
+import userDataReducer from './userData';
 
 const rootReducer = combineReducers({
-    lyrics: userDataReducer
+  userData: userDataReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -111,6 +111,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_facebook_login__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_facebook_login__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "react-redux");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _redux_actionCreators_userDataActionCreators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../redux/actionCreators/userDataActionCreators */ "./redux/actionCreators/userDataActionCreators.ts");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! next/router */ "next/router");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_6__);
 var _jsxFileName = "/home/andrey/programming/projects/templateNext/components/AuthPage/AuthPage.tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0__["createElement"];
 
@@ -119,20 +122,37 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0__["createElement"];
 
 
 
-const responseGoogle = response => {
-  console.log(response);
-};
 
-const responseFacebook = response => {
-  console.log(response);
-};
 
 const AuthPage = props => {
+  const responseGoogle = response => {
+    console.log("response google", response);
+    let dataToSend = {
+      name: response.profileObj.name,
+      avatar: response.profileObj.imageUrl
+    };
+    props.setUserData(dataToSend);
+    dataToSend.name ? next_router__WEBPACK_IMPORTED_MODULE_6___default.a.push('/list') : null;
+  };
+
+  const responseFacebook = response => {
+    console.log("response facebook", response);
+
+    if (response.accessToken) {
+      let dataToSend = {
+        name: response.name,
+        avatar: response.picture.data.url
+      };
+      props.setUserData(dataToSend);
+      dataToSend.name ? next_router__WEBPACK_IMPORTED_MODULE_6___default.a.push('/list') : null;
+    }
+  };
+
   return __jsx(_styledComponent__WEBPACK_IMPORTED_MODULE_1__["AuthMain"], {
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 19,
+      lineNumber: 35,
       columnNumber: 9
     }
   }, __jsx(_styledComponent__WEBPACK_IMPORTED_MODULE_1__["HeaderStyled"], {
@@ -140,7 +160,7 @@ const AuthPage = props => {
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 20,
+      lineNumber: 36,
       columnNumber: 13
     }
   }, __jsx(react_google_login__WEBPACK_IMPORTED_MODULE_2___default.a, {
@@ -152,12 +172,12 @@ const AuthPage = props => {
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21,
+      lineNumber: 37,
       columnNumber: 17
     }
   }), __jsx(react_facebook_login__WEBPACK_IMPORTED_MODULE_3___default.a, {
-    appId: "263020944839635",
-    autoLoad: false,
+    appId: "263020944839635" // autoLoad={false}
+    ,
     textButton: "",
     fields: "name,email,picture",
     onClick: responseFacebook,
@@ -166,39 +186,28 @@ const AuthPage = props => {
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 28,
-      columnNumber: 17
-    }
-  }), __jsx("button", {
-    onClick: props.sayHello,
-    __self: undefined,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 36,
+      lineNumber: 44,
       columnNumber: 17
     }
   })), __jsx(_styledComponent__WEBPACK_IMPORTED_MODULE_1__["AuthContentWrapper"], {
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 38,
+      lineNumber: 53,
       columnNumber: 13
     }
   }, __jsx(_styledComponent__WEBPACK_IMPORTED_MODULE_1__["AuthContent"], {
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 39,
+      lineNumber: 54,
       columnNumber: 17
     }
   })));
 };
 
 const mapDispatchToProps = dispatch => ({
-  sayHello: () => dispatch({
-    type: "HELLO"
-  }) // onClear: () => dispatch(setLyrics("")),
-
+  setUserData: payload => dispatch(Object(_redux_actionCreators_userDataActionCreators__WEBPACK_IMPORTED_MODULE_5__["setUserData"])(payload))
 });
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(null, mapDispatchToProps)(AuthPage));
@@ -299,10 +308,7 @@ const Auth = () => __jsx(_components_AuthPage_AuthPage__WEBPACK_IMPORTED_MODULE_
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "react-redux");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth */ "./pages/auth.tsx");
-/* harmony import */ var _redux_configureStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../redux/configureStore */ "./redux/configureStore.ts");
+/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./auth */ "./pages/auth.tsx");
 var _jsxFileName = "/home/andrey/programming/projects/templateNext/pages/index.tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0__["createElement"];
 // import * as React from 'react';
@@ -327,174 +333,66 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0__["createElement"];
 
 
 
-
-const store = Object(_redux_configureStore__WEBPACK_IMPORTED_MODULE_3__["default"])();
-
-const App = () => __jsx(react_redux__WEBPACK_IMPORTED_MODULE_1__["Provider"], {
-  store: store,
+const App = () => __jsx(_auth__WEBPACK_IMPORTED_MODULE_1__["default"], {
   __self: undefined,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 29,
+    lineNumber: 24,
     columnNumber: 29
   }
-}, __jsx(_auth__WEBPACK_IMPORTED_MODULE_2__["default"], {
-  __self: undefined,
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 29,
-    columnNumber: 53
-  }
-}));
+});
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
 
 /***/ }),
 
-/***/ "./redux/configureStore.ts":
-/*!*********************************!*\
-  !*** ./redux/configureStore.ts ***!
-  \*********************************/
-/*! exports provided: default */
+/***/ "./redux/actionCreators/userDataActionCreators.ts":
+/*!********************************************************!*\
+  !*** ./redux/actionCreators/userDataActionCreators.ts ***!
+  \********************************************************/
+/*! exports provided: setUserData, setUserDataIntoStore */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "redux");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var redux_saga__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-saga */ "redux-saga");
-/* harmony import */ var redux_saga__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(redux_saga__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _redux_reducers_rootReducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../redux/reducers/rootReducer */ "./redux/reducers/rootReducer.ts");
-/* harmony import */ var _saga_rootSaga__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./saga/rootSaga */ "./redux/saga/rootSaga.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setUserData", function() { return setUserData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setUserDataIntoStore", function() { return setUserDataIntoStore; });
+/* harmony import */ var _actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actionTypes/userDataActionType */ "./redux/actionTypes/userDataActionType.ts");
 
-
-
-
-const sagaMiddleware = redux_saga__WEBPACK_IMPORTED_MODULE_1___default()();
-
-const configureStore = () => {
-  const store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_redux_reducers_rootReducer__WEBPACK_IMPORTED_MODULE_2__["default"], Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(sagaMiddleware));
-  sagaMiddleware.run(_saga_rootSaga__WEBPACK_IMPORTED_MODULE_3__["default"]);
-  return store;
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (configureStore);
-
-/***/ }),
-
-/***/ "./redux/reducers/rootReducer.ts":
-/*!***************************************!*\
-  !*** ./redux/reducers/rootReducer.ts ***!
-  \***************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "redux");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _userData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./userData */ "./redux/reducers/userData.ts");
-
-
-const rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  lyrics: _userData__WEBPACK_IMPORTED_MODULE_1__["default"]
-});
-/* harmony default export */ __webpack_exports__["default"] = (rootReducer);
-
-/***/ }),
-
-/***/ "./redux/reducers/userData.ts":
-/*!************************************!*\
-  !*** ./redux/reducers/userData.ts ***!
-  \************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return userDataReducer; });
-// import * as actions from "../actionTypes/lyricsActionTypes";
-const initialState = {
-  userData: {
-    name: ""
-  }
-};
-function userDataReducer(state = initialState, action) {
-  switch (action.type) {
-    case "Hello":
-      return {
-        userData: {
-          name: "Andrey"
-        }
-      };
-
-    default:
-      return state;
-  }
+function setUserData(payload) {
+  return {
+    type: _actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_0__["SET_USER_DATA_AUTH"],
+    payload: payload
+  };
+}
+function setUserDataIntoStore(payload) {
+  return {
+    type: _actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_0__["SET_USER_DATA_AUTH_STORE"],
+    payload: payload
+  };
 }
 
 /***/ }),
 
-/***/ "./redux/saga/dataUser/watchDataUser.ts":
-/*!**********************************************!*\
-  !*** ./redux/saga/dataUser/watchDataUser.ts ***!
-  \**********************************************/
-/*! exports provided: default */
+/***/ "./redux/actionTypes/userDataActionType.ts":
+/*!*************************************************!*\
+  !*** ./redux/actionTypes/userDataActionType.ts ***!
+  \*************************************************/
+/*! exports provided: SET_LYRICS, SET_USER_DATA_AUTH, SET_USER_DATA_AUTH_STORE */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return watchDataUser; });
-/* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-saga/effects */ "redux-saga/effects");
-/* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _workerDataUser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./workerDataUser */ "./redux/saga/dataUser/workerDataUser.ts");
-
-
-function* watchDataUser() {
-  yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["takeEvery"])("HELLO", _workerDataUser__WEBPACK_IMPORTED_MODULE_1__["sayHello"]);
-}
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_LYRICS", function() { return SET_LYRICS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_USER_DATA_AUTH", function() { return SET_USER_DATA_AUTH; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_USER_DATA_AUTH_STORE", function() { return SET_USER_DATA_AUTH_STORE; });
+const SET_LYRICS = "lyricsActionTypes/SET_LYRICS";
+const SET_USER_DATA_AUTH = "SET_USER_DATA_AUTH";
+const SET_USER_DATA_AUTH_STORE = "SET_USER_DATA_AUTH_STORE";
 
 /***/ }),
 
-/***/ "./redux/saga/dataUser/workerDataUser.ts":
-/*!***********************************************!*\
-  !*** ./redux/saga/dataUser/workerDataUser.ts ***!
-  \***********************************************/
-/*! exports provided: sayHello */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sayHello", function() { return sayHello; });
-function* sayHello() {
-  yield console.log("HELLO");
-}
-
-/***/ }),
-
-/***/ "./redux/saga/rootSaga.ts":
-/*!********************************!*\
-  !*** ./redux/saga/rootSaga.ts ***!
-  \********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return rootSaga; });
-/* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-saga/effects */ "redux-saga/effects");
-/* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _dataUser_watchDataUser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dataUser/watchDataUser */ "./redux/saga/dataUser/watchDataUser.ts");
-
-
-const sagas = [_dataUser_watchDataUser__WEBPACK_IMPORTED_MODULE_1__["default"]];
-function* rootSaga() {
-  yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["all"])(sagas.map(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["fork"]));
-}
-
-/***/ }),
-
-/***/ 3:
+/***/ 6:
 /*!*******************************!*\
   !*** multi ./pages/index.tsx ***!
   \*******************************/
@@ -503,6 +401,17 @@ function* rootSaga() {
 
 module.exports = __webpack_require__(/*! /home/andrey/programming/projects/templateNext/pages/index.tsx */"./pages/index.tsx");
 
+
+/***/ }),
+
+/***/ "next/router":
+/*!******************************!*\
+  !*** external "next/router" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("next/router");
 
 /***/ }),
 
@@ -547,39 +456,6 @@ module.exports = require("react-google-login");
 /***/ (function(module, exports) {
 
 module.exports = require("react-redux");
-
-/***/ }),
-
-/***/ "redux":
-/*!************************!*\
-  !*** external "redux" ***!
-  \************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("redux");
-
-/***/ }),
-
-/***/ "redux-saga":
-/*!*****************************!*\
-  !*** external "redux-saga" ***!
-  \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("redux-saga");
-
-/***/ }),
-
-/***/ "redux-saga/effects":
-/*!*************************************!*\
-  !*** external "redux-saga/effects" ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("redux-saga/effects");
 
 /***/ }),
 
