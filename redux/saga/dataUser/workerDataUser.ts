@@ -1,4 +1,4 @@
-import { put } from "redux-saga/effects";
+import { put } from 'redux-saga/effects';
 import * as actions from '../../actionCreators/userDataActionCreators';
 
 export function* sayHello() {
@@ -7,4 +7,8 @@ export function* sayHello() {
 
 export function* setUserAuthData(payload: object) {
   yield put(actions.setUserDataIntoStore(payload));
+}
+
+export function* logOut() {
+  yield put(actions.logOutStore());
 }

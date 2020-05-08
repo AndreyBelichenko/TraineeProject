@@ -161,25 +161,37 @@ function MyApp({
 /*!********************************************************!*\
   !*** ./redux/actionCreators/userDataActionCreators.ts ***!
   \********************************************************/
-/*! exports provided: setUserData, setUserDataIntoStore */
+/*! exports provided: setUserData, setUserDataIntoStore, logOut, logOutStore */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setUserData", function() { return setUserData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setUserDataIntoStore", function() { return setUserDataIntoStore; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logOut", function() { return logOut; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logOutStore", function() { return logOutStore; });
 /* harmony import */ var _actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actionTypes/userDataActionType */ "./redux/actionTypes/userDataActionType.ts");
 
 function setUserData(payload) {
   return {
-    type: _actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_0__["SET_USER_DATA_AUTH"],
-    payload: payload
+    payload,
+    type: _actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_0__["SET_USER_DATA_AUTH"]
   };
 }
 function setUserDataIntoStore(payload) {
   return {
-    type: _actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_0__["SET_USER_DATA_AUTH_STORE"],
-    payload: payload
+    payload,
+    type: _actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_0__["SET_USER_DATA_AUTH_STORE"]
+  };
+}
+function logOut() {
+  return {
+    type: _actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_0__["LOGOUT"]
+  };
+}
+function logOutStore() {
+  return {
+    type: _actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_STORE"]
   };
 }
 
@@ -189,17 +201,19 @@ function setUserDataIntoStore(payload) {
 /*!*************************************************!*\
   !*** ./redux/actionTypes/userDataActionType.ts ***!
   \*************************************************/
-/*! exports provided: SET_LYRICS, SET_USER_DATA_AUTH, SET_USER_DATA_AUTH_STORE */
+/*! exports provided: SET_USER_DATA_AUTH, SET_USER_DATA_AUTH_STORE, LOGOUT, LOGOUT_STORE */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_LYRICS", function() { return SET_LYRICS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_USER_DATA_AUTH", function() { return SET_USER_DATA_AUTH; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_USER_DATA_AUTH_STORE", function() { return SET_USER_DATA_AUTH_STORE; });
-const SET_LYRICS = "lyricsActionTypes/SET_LYRICS";
-const SET_USER_DATA_AUTH = "SET_USER_DATA_AUTH";
-const SET_USER_DATA_AUTH_STORE = "SET_USER_DATA_AUTH_STORE";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGOUT", function() { return LOGOUT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGOUT_STORE", function() { return LOGOUT_STORE; });
+const SET_USER_DATA_AUTH = 'SET_USER_DATA_AUTH';
+const SET_USER_DATA_AUTH_STORE = 'SET_USER_DATA_AUTH_STORE';
+const LOGOUT = 'LOGOUT';
+const LOGOUT_STORE = 'LOGOUT_STORE';
 
 /***/ }),
 
@@ -269,12 +283,15 @@ const rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"]
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return userDataReducer; });
 /* harmony import */ var _actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actionTypes/userDataActionType */ "./redux/actionTypes/userDataActionType.ts");
-// import * as actions from "../actionTypes/lyricsActionTypes";
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! js-cookie */ "js-cookie");
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_1__);
 
+
+const userDataCookie = js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.get('userData');
 const initialState = {
   userData: {
-    name: '',
-    avatar: ''
+    name: typeof userDataCookie === "string" ? JSON.parse(userDataCookie).name : '',
+    avatar: typeof userDataCookie === "string" ? JSON.parse(userDataCookie).avatar : ''
   }
 };
 function userDataReducer(state = initialState, action) {
@@ -290,6 +307,9 @@ function userDataReducer(state = initialState, action) {
       return {
         userData: action.payload.payload
       };
+
+    case _actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_STORE"]:
+      return initialState;
 
     default:
       return state;
@@ -318,6 +338,7 @@ __webpack_require__.r(__webpack_exports__);
 function* watchDataUser() {
   yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["takeEvery"])('HELLO', _workerDataUser__WEBPACK_IMPORTED_MODULE_1__["sayHello"]);
   yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["takeEvery"])(_actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_2__["SET_USER_DATA_AUTH"], _workerDataUser__WEBPACK_IMPORTED_MODULE_1__["setUserAuthData"]);
+  yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["takeEvery"])(_actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_2__["LOGOUT"], _workerDataUser__WEBPACK_IMPORTED_MODULE_1__["logOut"]);
 }
 
 /***/ }),
@@ -326,13 +347,14 @@ function* watchDataUser() {
 /*!***********************************************!*\
   !*** ./redux/saga/dataUser/workerDataUser.ts ***!
   \***********************************************/
-/*! exports provided: sayHello, setUserAuthData */
+/*! exports provided: sayHello, setUserAuthData, logOut */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sayHello", function() { return sayHello; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setUserAuthData", function() { return setUserAuthData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logOut", function() { return logOut; });
 /* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-saga/effects */ "redux-saga/effects");
 /* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _actionCreators_userDataActionCreators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actionCreators/userDataActionCreators */ "./redux/actionCreators/userDataActionCreators.ts");
@@ -343,6 +365,9 @@ function* sayHello() {
 }
 function* setUserAuthData(payload) {
   yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["put"])(_actionCreators_userDataActionCreators__WEBPACK_IMPORTED_MODULE_1__["setUserDataIntoStore"](payload));
+}
+function* logOut() {
+  yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["put"])(_actionCreators_userDataActionCreators__WEBPACK_IMPORTED_MODULE_1__["logOutStore"]());
 }
 
 /***/ }),
@@ -378,6 +403,17 @@ function* rootSaga() {
 
 module.exports = __webpack_require__(/*! private-next-pages/_app.js */"./pages/_app.js");
 
+
+/***/ }),
+
+/***/ "js-cookie":
+/*!****************************!*\
+  !*** external "js-cookie" ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("js-cookie");
 
 /***/ }),
 

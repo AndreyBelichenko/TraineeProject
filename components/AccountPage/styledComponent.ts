@@ -77,8 +77,8 @@ export const AccountInfoButtons = styled.div`
 `;
 
 export const HeaderStyled = styled(Header)({
-    margin: '0!important',
-    display: 'flex',
-    justifyContent: 'flex-end',
-    minHeight: '80px',
+  margin: '0!important',
+  display: 'flex',
+  justifyContent: 'flex-end',
+  minHeight: '80px',
 });

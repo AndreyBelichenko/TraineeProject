@@ -1,6 +1,7 @@
-// import * as actions from "../actionTypes/lyricsActionTypes";
 import * as actionTypes from '../actionTypes/userDataActionType';
+import Cookies from 'js-cookie';
 
+const userDataCookie = Cookies.get('userData');
 export type UserDataType = {
   name: string,
   avatar: string,
@@ -13,8 +14,8 @@ export type InitialStateType = {
 
 const initialState: InitialStateType = {
   userData: {
-    name: '',
-    avatar: '',
+    name: typeof userDataCookie === "string" ? JSON.parse(userDataCookie).name : '',
+    avatar: typeof userDataCookie === "string" ? JSON.parse(userDataCookie).avatar : '',
   },
 };
 
@@ -24,7 +25,8 @@ export default function userDataReducer(
 ): InitialStateType {
   switch (action.type) {
     case 'Hello': return { userData: { name: 'Andrey' } };
-    case actionTypes.SET_USER_DATA_AUTH_STORE: return { userData: action.payload.payload}
+    case actionTypes.SET_USER_DATA_AUTH_STORE: return { userData: action.payload.payload };
+    case actionTypes.LOGOUT_STORE: return initialState;
     default:
       return state;
   }
