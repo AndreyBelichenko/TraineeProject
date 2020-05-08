@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as Styled from './styledComponent';
 import { Button, Image } from 'semantic-ui-react';
 import { useSelector } from 'react-redux';
-import Header from "../Header/Header";
+import Header from '../Header/Header';
 
 const AccountPage: React.FC = () => {
   const userData = useSelector((state:any) => state.userData.userData);

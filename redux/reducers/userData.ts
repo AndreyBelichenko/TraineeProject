@@ -14,8 +14,8 @@ export type InitialStateType = {
 
 const initialState: InitialStateType = {
   userData: {
-    name: typeof userDataCookie === "string" ? JSON.parse(userDataCookie).name : '',
-    avatar: typeof userDataCookie === "string" ? JSON.parse(userDataCookie).avatar : '',
+    name: typeof userDataCookie === 'string' ? JSON.parse(userDataCookie).name : '',
+    avatar: typeof userDataCookie === 'string' ? JSON.parse(userDataCookie).avatar : '',
   },
 };
 

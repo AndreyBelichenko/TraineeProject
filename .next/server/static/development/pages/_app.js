@@ -290,8 +290,8 @@ __webpack_require__.r(__webpack_exports__);
 const userDataCookie = js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.get('userData');
 const initialState = {
   userData: {
-    name: typeof userDataCookie === "string" ? JSON.parse(userDataCookie).name : '',
-    avatar: typeof userDataCookie === "string" ? JSON.parse(userDataCookie).avatar : ''
+    name: typeof userDataCookie === 'string' ? JSON.parse(userDataCookie).name : '',
+    avatar: typeof userDataCookie === 'string' ? JSON.parse(userDataCookie).avatar : ''
   }
 };
 function userDataReducer(state = initialState, action) {

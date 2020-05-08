@@ -1,16 +1,15 @@
-import styled from "styled-components";
-import {Header} from "semantic-ui-react";
-import { Button } from 'semantic-ui-react';
+import styled from 'styled-components';
+import { Header, Button } from 'semantic-ui-react';
 
 export const HeaderStyled = styled(Header)({
-    margin: '0!important',
-    display: 'flex',
-    justifyContent: 'flex-end',
+  margin: '0!important',
+  display: 'flex',
+  justifyContent: 'flex-end',
 });
 
 export const ButtonStyled = styled(Button)({
-    height: '100%',
-    width: '100%',
+  height: '100%',
+  width: '100%',
 });
 
 export const BtnWrapper = styled.div`

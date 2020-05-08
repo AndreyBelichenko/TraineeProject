@@ -10753,8 +10753,8 @@ __webpack_require__.r(__webpack_exports__);
 var userDataCookie = js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.get('userData');
 var initialState = {
   userData: {
-    name: typeof userDataCookie === "string" ? JSON.parse(userDataCookie).name : '',
-    avatar: typeof userDataCookie === "string" ? JSON.parse(userDataCookie).avatar : ''
+    name: typeof userDataCookie === 'string' ? JSON.parse(userDataCookie).name : '',
+    avatar: typeof userDataCookie === 'string' ? JSON.parse(userDataCookie).avatar : ''
   }
 };
 function userDataReducer() {
