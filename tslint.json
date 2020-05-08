@@ -5,7 +5,8 @@
     "align": false,
     "react-hooks-nesting": true,
     "singleQuote": true,
-    "arrow-parens": true,
+    "arrow-parens": false,
+    "requireForBlockBody": true,
     "function-name": [
       true,
       {
