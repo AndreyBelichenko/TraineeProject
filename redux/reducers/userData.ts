@@ -25,7 +25,7 @@ export default function userDataReducer(
 ): InitialStateType {
   console.log();
   switch (action.type) {
-    case 'Hello': return { userData: { name: 'Andrey' } };
+    case 'Hello': return { userData: { name: 'AndreyBelichenko' } };
     case actionTypes.SET_USER_DATA_AUTH_STORE: return { userData: action.payload.payload };
     case actionTypes.LOGOUT_STORE: return { userData: { name: '', avatar: '' } };
     default:

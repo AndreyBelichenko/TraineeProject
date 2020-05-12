@@ -10766,7 +10766,7 @@ function userDataReducer() {
     case 'Hello':
       return {
         userData: {
-          name: 'Andrey'
+          name: 'AndreyBelichenko'
         }
       };
 
