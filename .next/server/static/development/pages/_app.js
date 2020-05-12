@@ -120,7 +120,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _redux_configureStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../redux/configureStore */ "./redux/configureStore.ts");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "react-redux");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_3__);
-var _jsxFileName = "/home/andrey/programming/projects/templateNext/pages/_app.js";
+var _jsxFileName = "/home/andrey/programming/projects/TraineeProject/pages/_app.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0__["createElement"];
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -287,7 +287,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_1__);
 
 
-const userDataCookie = js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.get('userData');
+const userDataCookie = js_cookie__WEBPACK_IMPORTED_MODULE_1__["get"]('userData');
 const initialState = {
   userData: {
     name: typeof userDataCookie === 'string' ? JSON.parse(userDataCookie).name : '',
@@ -295,6 +295,8 @@ const initialState = {
   }
 };
 function userDataReducer(state = initialState, action) {
+  console.log();
+
   switch (action.type) {
     case 'Hello':
       return {
@@ -309,7 +311,12 @@ function userDataReducer(state = initialState, action) {
       };
 
     case _actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_STORE"]:
-      return initialState;
+      return {
+        userData: {
+          name: '',
+          avatar: ''
+        }
+      };
 
     default:
       return state;

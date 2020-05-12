@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`header snapshot header snapshot with page="account" 1`] = `ShallowWrapper {}`;
+
+exports[`header snapshot header snapshot with page="auth" 1`] = `ShallowWrapper {}`;
+
+exports[`header snapshot header snapshot with page="list" 1`] = `ShallowWrapper {}`;

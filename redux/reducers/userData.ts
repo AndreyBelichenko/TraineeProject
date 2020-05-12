@@ -1,5 +1,5 @@
 import * as actionTypes from '../actionTypes/userDataActionType';
-import Cookies from 'js-cookie';
+import * as Cookies from 'js-cookie';
 
 const userDataCookie = Cookies.get('userData');
 export type UserDataType = {
@@ -23,10 +23,11 @@ export default function userDataReducer(
     state: InitialStateType = initialState,
     action: any,
 ): InitialStateType {
+  console.log();
   switch (action.type) {
     case 'Hello': return { userData: { name: 'Andrey' } };
     case actionTypes.SET_USER_DATA_AUTH_STORE: return { userData: action.payload.payload };
-    case actionTypes.LOGOUT_STORE: return initialState;
+    case actionTypes.LOGOUT_STORE: return { userData: { name: '', avatar: '' } };
     default:
       return state;
   }

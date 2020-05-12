@@ -10590,7 +10590,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _redux_configureStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../redux/configureStore */ "./redux/configureStore.ts");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 
-var _jsxFileName = "/home/andrey/programming/projects/templateNext/pages/_app.js";
+var _jsxFileName = "/home/andrey/programming/projects/TraineeProject/pages/_app.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1__["createElement"];
 
 
@@ -10750,7 +10750,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_1__);
 
 
-var userDataCookie = js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.get('userData');
+var userDataCookie = js_cookie__WEBPACK_IMPORTED_MODULE_1__["get"]('userData');
 var initialState = {
   userData: {
     name: typeof userDataCookie === 'string' ? JSON.parse(userDataCookie).name : '',
@@ -10760,6 +10760,7 @@ var initialState = {
 function userDataReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  console.log();
 
   switch (action.type) {
     case 'Hello':
@@ -10775,7 +10776,12 @@ function userDataReducer() {
       };
 
     case _actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_STORE"]:
-      return initialState;
+      return {
+        userData: {
+          name: '',
+          avatar: ''
+        }
+      };
 
     default:
       return state;
@@ -10951,7 +10957,7 @@ function rootSaga() {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! next-client-pages-loader?page=%2F_app&absolutePagePath=private-next-pages%2F_app.js&hotRouterUpdates=true! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F_app&absolutePagePath=private-next-pages%2F_app.js&hotRouterUpdates=true!./");
-module.exports = __webpack_require__(/*! /home/andrey/programming/projects/templateNext/node_modules/next/dist/client/router.js */"./node_modules/next/dist/client/router.js");
+module.exports = __webpack_require__(/*! /home/andrey/programming/projects/TraineeProject/node_modules/next/dist/client/router.js */"./node_modules/next/dist/client/router.js");
 
 
 /***/ }),

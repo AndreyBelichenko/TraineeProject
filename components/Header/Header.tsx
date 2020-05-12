@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as Styled from './styledComponent';
 import Router from 'next/router';
-import Cookies from 'js-cookie';
+import * as Cookies from 'js-cookie';
 import { useDispatch } from 'react-redux';
 import GoogleLogin from 'react-google-login';
 import FacebookLoginWithButton from 'react-facebook-login';
