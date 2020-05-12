@@ -94,11 +94,11 @@ const Header = (props: any) => {
   };
 
   return (
-      <>
+      <div className="header_content">
         <Styled.HeaderStyled block>
             {displayButtons(props.page)}
         </Styled.HeaderStyled>
-      </>
+      </div>
   );
 };
 

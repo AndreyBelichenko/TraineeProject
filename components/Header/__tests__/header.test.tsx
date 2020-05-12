@@ -15,7 +15,7 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import createSagaMiddleware from 'redux-saga';
-import { configure, mount } from 'enzyme';
+import { configure, shallow } from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
 import rootSaga from '../../../redux/saga/rootSaga';
 import Header from '../Header';
@@ -29,9 +29,10 @@ configure({ adapter: new adapter() });
 
 describe('testing actions userDataActionCreators', () => {
   it('check month and years dropdowns displayed', () => {
-    const DateInputComponent = mount(<Provider store={store}>
+    const DateInputComponent = shallow(<Provider store={store}>
       <Header page="auth" />
-    </Provider>).find('.header_auth');
+    </Provider>).dive();
+    console.log('DateInputComponent', DateInputComponent.debug());
     expect(DateInputComponent.hasClass('auth')).toEqual(true);
   });
 });

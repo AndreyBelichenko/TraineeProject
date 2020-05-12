@@ -5,7 +5,6 @@ import * as Styled from './styledComponent';
 import Header from '../Header/Header';
 
 const ListPage: React.FC = () => {
-
   return (
         <Styled.ListMain>
             <Header page="list"/>
