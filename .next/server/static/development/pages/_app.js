@@ -301,7 +301,7 @@ function userDataReducer(state = initialState, action) {
     case 'Hello':
       return {
         userData: {
-          name: 'AndreyBelichenko'
+          name: 'Andrey'
         }
       };
 
