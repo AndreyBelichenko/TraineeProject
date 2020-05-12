@@ -10760,16 +10760,8 @@ var initialState = {
 function userDataReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  console.log();
 
   switch (action.type) {
-    case 'Hello':
-      return {
-        userData: {
-          name: 'Andrey'
-        }
-      };
-
     case _actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_0__["SET_USER_DATA_AUTH_STORE"]:
       return {
         userData: action.payload.payload
@@ -10818,17 +10810,13 @@ function watchDataUser() {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeEvery"])('HELLO', _workerDataUser__WEBPACK_IMPORTED_MODULE_2__["sayHello"]);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeEvery"])(_actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_3__["SET_USER_DATA_AUTH"], _workerDataUser__WEBPACK_IMPORTED_MODULE_2__["setUserAuthData"]);
 
         case 2:
           _context.next = 4;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeEvery"])(_actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_3__["SET_USER_DATA_AUTH"], _workerDataUser__WEBPACK_IMPORTED_MODULE_2__["setUserAuthData"]);
-
-        case 4:
-          _context.next = 6;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeEvery"])(_actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_3__["LOGOUT"], _workerDataUser__WEBPACK_IMPORTED_MODULE_2__["logOut"]);
 
-        case 6:
+        case 4:
         case "end":
           return _context.stop();
       }
@@ -10842,12 +10830,11 @@ function watchDataUser() {
 /*!***********************************************!*\
   !*** ./redux/saga/dataUser/workerDataUser.ts ***!
   \***********************************************/
-/*! exports provided: sayHello, setUserAuthData, logOut */
+/*! exports provided: setUserAuthData, logOut */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sayHello", function() { return sayHello; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setUserAuthData", function() { return setUserAuthData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logOut", function() { return logOut; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
@@ -10856,19 +10843,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actionCreators_userDataActionCreators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actionCreators/userDataActionCreators */ "./redux/actionCreators/userDataActionCreators.ts");
 
 
-var _marked = /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(sayHello),
-    _marked2 = /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(setUserAuthData),
-    _marked3 = /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(logOut);
+var _marked = /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(setUserAuthData),
+    _marked2 = /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(logOut);
 
 
 
-function sayHello() {
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function sayHello$(_context) {
+function setUserAuthData(payload) {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function setUserAuthData$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return console.log('HELLO');
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_actionCreators_userDataActionCreators__WEBPACK_IMPORTED_MODULE_2__["setUserDataIntoStore"](payload));
 
         case 2:
         case "end":
@@ -10877,13 +10863,13 @@ function sayHello() {
     }
   }, _marked);
 }
-function setUserAuthData(payload) {
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function setUserAuthData$(_context2) {
+function logOut() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function logOut$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
           _context2.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_actionCreators_userDataActionCreators__WEBPACK_IMPORTED_MODULE_2__["setUserDataIntoStore"](payload));
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_actionCreators_userDataActionCreators__WEBPACK_IMPORTED_MODULE_2__["logOutStore"]());
 
         case 2:
         case "end":
@@ -10891,21 +10877,6 @@ function setUserAuthData(payload) {
       }
     }
   }, _marked2);
-}
-function logOut() {
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function logOut$(_context3) {
-    while (1) {
-      switch (_context3.prev = _context3.next) {
-        case 0:
-          _context3.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_actionCreators_userDataActionCreators__WEBPACK_IMPORTED_MODULE_2__["logOutStore"]());
-
-        case 2:
-        case "end":
-          return _context3.stop();
-      }
-    }
-  }, _marked3);
 }
 
 /***/ }),

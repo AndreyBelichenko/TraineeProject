@@ -295,16 +295,7 @@ const initialState = {
   }
 };
 function userDataReducer(state = initialState, action) {
-  console.log();
-
   switch (action.type) {
-    case 'Hello':
-      return {
-        userData: {
-          name: 'Andrey'
-        }
-      };
-
     case _actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_0__["SET_USER_DATA_AUTH_STORE"]:
       return {
         userData: action.payload.payload
@@ -343,7 +334,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function* watchDataUser() {
-  yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["takeEvery"])('HELLO', _workerDataUser__WEBPACK_IMPORTED_MODULE_1__["sayHello"]);
   yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["takeEvery"])(_actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_2__["SET_USER_DATA_AUTH"], _workerDataUser__WEBPACK_IMPORTED_MODULE_1__["setUserAuthData"]);
   yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["takeEvery"])(_actionTypes_userDataActionType__WEBPACK_IMPORTED_MODULE_2__["LOGOUT"], _workerDataUser__WEBPACK_IMPORTED_MODULE_1__["logOut"]);
 }
@@ -354,12 +344,11 @@ function* watchDataUser() {
 /*!***********************************************!*\
   !*** ./redux/saga/dataUser/workerDataUser.ts ***!
   \***********************************************/
-/*! exports provided: sayHello, setUserAuthData, logOut */
+/*! exports provided: setUserAuthData, logOut */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sayHello", function() { return sayHello; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setUserAuthData", function() { return setUserAuthData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logOut", function() { return logOut; });
 /* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-saga/effects */ "redux-saga/effects");
@@ -367,9 +356,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actionCreators_userDataActionCreators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actionCreators/userDataActionCreators */ "./redux/actionCreators/userDataActionCreators.ts");
 
 
-function* sayHello() {
-  yield console.log('HELLO');
-}
 function* setUserAuthData(payload) {
   yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["put"])(_actionCreators_userDataActionCreators__WEBPACK_IMPORTED_MODULE_1__["setUserDataIntoStore"](payload));
 }

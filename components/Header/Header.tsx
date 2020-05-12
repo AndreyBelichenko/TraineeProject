@@ -21,7 +21,6 @@ const Header = (props: any) => {
   };
 
   const responseGoogle = (response: any) => {
-    console.log(response);
     if (response.accessToken) {
       const dataToSend = {
         name: response.profileObj.name,
@@ -34,6 +33,7 @@ const Header = (props: any) => {
   };
 
   const responseFacebook = (response: any) => {
+    console.log(response);
     if (response.accessToken) {
       const dataToSend = {
         name: response.name,
@@ -45,8 +45,8 @@ const Header = (props: any) => {
     }
   };
 
-  const displayButtons = () => {
-    switch (props.page) {
+  const displayButtons = (page: string) => {
+    switch (page) {
       case 'auth': return(
                 <>
                     <GoogleLogin
@@ -55,6 +55,7 @@ const Header = (props: any) => {
                         onSuccess={responseGoogle}
                         onFailure={responseGoogle}
                         cookiePolicy={'single_host_origin'}
+                        className="header_auth auth"
                     />
                     <FacebookLoginWithButton
                         appId="263020944839635"
@@ -93,9 +94,11 @@ const Header = (props: any) => {
   };
 
   return (
+      <>
         <Styled.HeaderStyled block>
-            {displayButtons()}
+            {displayButtons(props.page)}
         </Styled.HeaderStyled>
+      </>
   );
 };
 

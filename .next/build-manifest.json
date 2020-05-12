@@ -25,6 +25,10 @@
     "/auth": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
+    ],
+    "/list": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
     ]
   }
 }
